@@ -112,14 +112,14 @@
     "air_throw_distance": "35 Feets"
   },
   {
-    "title": "GW 16 S Air Cooler",
+    "title": "GW 18 S Air Cooler",
     "images": ["/images/gw16_s/gw16_s_l.png", "/images/gw16_s/gw16_s_f.png", "/images/gw16_s/gw16_s_r.png"],
-    "hero_images": ["/images/gw16_s/gw16_s_hero_image.png"],
-    "model_name": "GW 16 S",
+    "hero_images": ["/images/gw16_s/gw18_s_hero_image.png"],
+    "model_name": "GW 18 S",
     "dimension": "24 x 24 x 46 inches",
     "motor": "C.G. Motor",
     "water_tank": "90 Liters ",
-    "fan": "16' Climatizer fan",
+    "fan": "17' Exhaust fan",
     "speed_control": "3 Speed Control: Low, Medium, High",
     "oscillating_louvers": "Auto Swing",
     "cooling_pad": "High-density eco-friendly Woodwool",

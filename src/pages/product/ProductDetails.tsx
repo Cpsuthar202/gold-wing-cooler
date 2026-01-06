@@ -19,7 +19,13 @@ const ProductDetails = () => {
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2 }}>
       {/* Main Product Image */}
       <Box sx={{ width: isSmScreen ? "100%" : "30%", display: "grid", placeItems: "center", margin: "auto" }}>
-        <Image src={selectImage} alt="image" style={{ width: isSmScreen ? "80%" : "100%", borderRadius: 5 }} />
+        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center ", alignItems: "center", gap: 2, p: 2 }}>
+          <Image src={selectImage} alt="image" style={{ width: isSmScreen ? "80%" : "100%", borderRadius: 5 }} />
+          {/* <Box sx={{ width: "100%", height: "100%" }}> */}
+          {/* <iframe src="https://cpssuthar202.sirv.com/Spins/w/w1.spin " height="100%" frameborder="0" allowfullscreen></iframe> */}
+          {/* </Box> */}
+        </Box>
+
         {/* Thumbnail Images */}
         {productdata?.images && productdata.images.length >= 2 && (
           // <Box sx={{ width: "100%", overflowX: "auto" }}>
@@ -31,7 +37,6 @@ const ProductDetails = () => {
           // </Box>
         )}
       </Box>
-
       {/* Product Title */}
       <Box sx={{ position: "relative" }}>
         <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
@@ -45,7 +50,6 @@ const ProductDetails = () => {
           </WebShare>
         </Box>
       </Box>
-
       <Grid container spacing={2}>
         {/* Colors Section */}
         <Grid item xs={12} sm={6}>
@@ -78,7 +82,6 @@ const ProductDetails = () => {
             )
         )}
       </Grid>
-
       {/* Product Description */}
       {/* <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         {productdata?.description && (
@@ -91,7 +94,6 @@ const ProductDetails = () => {
           </>
         )}
       </Box> */}
-
       {/* features */}
       {/* {productdata?.key_features && (
         <>
@@ -153,7 +155,6 @@ const ProductDetails = () => {
           <Divider />
         </>
       )} */}
-
       <Box sx={{ display: "flex", flexDirection: "column" }}>{productdata?.hero_images && productdata?.hero_images.map((i) => <Image key={i} src={i} alt="image" style={{}} />)}</Box>
     </Container>
   );
