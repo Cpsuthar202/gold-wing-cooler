@@ -1,89 +1,132 @@
-import { Grid, Typography, IconButton, Box, Stack, Container } from "@mui/material";
+import { Grid, Typography, IconButton, Box, Stack, Container, Card, Divider } from "@mui/material";
 import { Share, SquareRounded } from "@mui/icons-material";
 import { Image } from "@components/image/index";
 import { useProductDetails } from "./productDetails.hook";
 import { WebShare } from "@components/Container/index";
 import { Circular } from "@components/loader/index";
+import cooler_background from "../../../public/images/cooler_background_desktop.jpg";
 const ProductDetails = () => {
-  // Destructure variables and methods from the useProduct hook
   const {
-    variables: { productdata, features, isSmScreen, selectImage, setSelectImage },
-    // methods: { },
+    variables: { productdata, features, featureList, isSmScreen, selectImage, setSelectImage },
   } = useProductDetails();
 
-  if (!productdata) {
-    return <Circular />;
-  }
+  console.log(productdata?.hero_images);
+
+  if (!productdata) return <Circular />;
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2 }}>
-      {/* Main Product Image */}
-      <Box sx={{ width: isSmScreen ? "100%" : "30%", display: "grid", placeItems: "center", margin: "auto" }}>
-        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center ", alignItems: "center", gap: 2, p: 2 }}>
-          <Image src={selectImage} alt="image" style={{ width: isSmScreen ? "80%" : "100%", borderRadius: 5 }} />
-          {/* <Box sx={{ width: "100%", height: "100%" }}> */}
-          {/* <iframe src="https://cpssuthar202.sirv.com/Spins/w/w1.spin " height="100%" frameborder="0" allowfullscreen></iframe> */}
-          {/* </Box> */}
-        </Box>
+    <Container maxWidth="sm" sx={{ p: 2 }}>
+      {/* IMAGE SECTION */}
+      <Card
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          p: 2,
+          px: 3,
+          borderRadius: 3,
+          width: "100%",
+          height: "100%",
+          backgroundImage: `url(${cooler_background})`,
+        }}
+      >
+        <Image
+          src={selectImage}
+          alt="cooler"
+          style={{
+            // height: 500,
+            padding: "10px",
+            // maxHeight: isSmScreen ? 240 : 320,
+            width: "100%",
+            objectFit: "contain",
+          }}
+        />
+      </Card>
 
-        {/* Thumbnail Images */}
-        {productdata?.images && productdata.images.length >= 2 && (
-          // <Box sx={{ width: "100%", overflowX: "auto" }}>
-          <Box sx={{ display: "flex", width: "fit-content", m: "auto", mt: 2 }}>
-            {productdata?.images?.map((image, index) => (
-              <Image key={index} src={image} alt="image" style={{ height: isSmScreen ? 100 : 150, margin: 5, borderRadius: 5 }} onClick={() => setSelectImage(image)} />
-            ))}
-          </Box>
-          // </Box>
-        )}
-      </Box>
-      {/* Product Title */}
-      <Box sx={{ position: "relative" }}>
-        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-          {productdata?.title}
-        </Typography>
-        <Box sx={{ position: "absolute", display: "flex", flexDirection: "column", top: -2, right: 10 }}>
-          <WebShare text={productdata?.title} url={`product_details?model_name=${productdata?.model_name}`}>
-            <IconButton aria-label="share" size="small">
+      {/* THUMBNAILS */}
+      {productdata?.images?.length > 1 && (
+        <Stack direction="row" spacing={1} justifyContent="center" m={2}>
+          {productdata.images.map((img, i) => (
+            <Box
+              key={i}
+              onClick={() => setSelectImage(img)}
+              sx={{
+                border: selectImage === img ? "2px solid #1976d2" : "1px solid #ddd",
+                borderRadius: 1,
+                p: 0.5,
+                cursor: "pointer",
+              }}
+            >
+              <Image src={img} alt="thumb" style={{ height: 100 }} />
+            </Box>
+          ))}
+        </Stack>
+      )}
+
+      {/* PRODUCT INFO CARD */}
+      <Card sx={{ borderRadius: 3, p: 2, backgroundColor: "white" }}>
+        {/* TITLE + SHARE */}
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Typography variant="subtitle1" fontWeight={600}>
+            {productdata.title}
+          </Typography>
+
+          <WebShare text={productdata.title} url={`product_details?model_name=${productdata.model_name}`}>
+            <IconButton size="small">
               <Share />
             </IconButton>
           </WebShare>
         </Box>
-      </Box>
-      <Grid container spacing={2}>
-        {/* Colors Section */}
-        <Grid item xs={12} sm={6}>
-          <Box>
-            <Typography variant="subtitle2" sx={{ textTransform: "capitalize", fontWeight: 500 }}>
-              Colors
-            </Typography>
-            <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto" }}>
-              {productdata?.available_colors.map((color, index) => (
-                <Typography variant="body1" key={index} sx={{ px: 1, display: "flex", flexDirection: "row", justifyContent: "center" }}>
-                  {color} <SquareRounded sx={{ color: color }} />
-                </Typography>
-              ))}
-            </Stack>
-          </Box>
-        </Grid>
 
-        {/* Features Section */}
-        {Object.entries(features).map(
-          ([key, value]) =>
-            value && (
-              <Grid item xs={12} sm={6} key={key}>
-                <Box>
-                  <Typography variant="subtitle2" sx={{ textTransform: "capitalize", fontWeight: 500 }}>
-                    {key.replace(/_/g, " ")}
-                  </Typography>
-                  <Typography variant="body1">{value}</Typography>
-                </Box>
-              </Grid>
-            )
-        )}
-      </Grid>
-      {/* Product Description */}
-      {/* <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+        {/* COLORS */}
+        <Box mt={1}>
+          <Typography variant="body2" color="text.secondary">
+            Colors:
+          </Typography>
+          <Stack direction="row" spacing={1} mt={0.5}>
+            {productdata.available_colors.map((color, index) => (
+              <Stack key={index} direction="row" alignItems="center" spacing={0.5}>
+                <SquareRounded sx={{ color }} />
+                <Typography variant="body2">{color}</Typography>
+              </Stack>
+            ))}
+          </Stack>
+        </Box>
+
+        <Divider sx={{ my: 2 }} />
+
+        {/* SPECS */}
+        <Grid container spacing={2}>
+          {featureList.map(
+            (item, index) =>
+              item.value && (
+                <Grid item xs={12} sm={12} key={index}>
+                  <Typography fontWeight={600}>{item.value}</Typography>
+                  <Typography variant="caption">{item.label}</Typography>
+                </Grid>
+              ),
+          )}
+        </Grid>
+      </Card>
+      <Box mt={3}></Box>
+      {/* HERO IMAGES */}
+      {productdata?.hero_images?.length > 0 && (
+        <Box mt={3}>
+          {productdata.hero_images.map((img) => (
+            <Image key={img} src={img} alt="hero" style={{ width: "100%", marginBottom: 12 }} />
+          ))}
+        </Box>
+      )}
+    </Container>
+  );
+};
+
+export default ProductDetails;
+
+{
+  /* Product Description */
+}
+{
+  /* <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         {productdata?.description && (
           <>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -93,9 +136,13 @@ const ProductDetails = () => {
             <Divider />
           </>
         )}
-      </Box> */}
-      {/* features */}
-      {/* {productdata?.key_features && (
+      </Box> */
+}
+{
+  /* features */
+}
+{
+  /* {productdata?.key_features && (
         <>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -109,8 +156,10 @@ const ProductDetails = () => {
           </Box>
           <Divider />
         </>
-      )} */}
-      {/* {productdata?.safety_features && (
+      )} */
+}
+{
+  /* {productdata?.safety_features && (
         <>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -124,8 +173,10 @@ const ProductDetails = () => {
           </Box>
           <Divider />
         </>
-      )} */}
-      {/* {productdata?.user_friendly_features && (
+      )} */
+}
+{
+  /* {productdata?.user_friendly_features && (
         <>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -139,8 +190,10 @@ const ProductDetails = () => {
           </Box>
           <Divider />
         </>
-      )} */}
-      {/* {productdata?.suitable_for && (
+      )} */
+}
+{
+  /* {productdata?.suitable_for && (
         <>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -154,10 +207,5 @@ const ProductDetails = () => {
           </Box>
           <Divider />
         </>
-      )} */}
-      <Box sx={{ display: "flex", flexDirection: "column" }}>{productdata?.hero_images && productdata?.hero_images.map((i) => <Image key={i} src={i} alt="image" style={{}} />)}</Box>
-    </Container>
-  );
-};
-
-export default ProductDetails;
+      )} */
+}

@@ -4,7 +4,8 @@ import { ProductCard } from "@components/card/index";
 import { Image } from "@components/image/index";
 import { useHome } from "./Home.hook";
 import { Circular } from "@components/loader/index";
-import hone_poster from "../../../public/images/home_poster.png";
+import hone_poster from "../../../public/images/home_poster2.png";
+// import ResponsiveAppBar from "@components/topBar/ResponsiveAppBar";
 const Home = () => {
   const {
     variable: { productslist },
@@ -17,6 +18,7 @@ const Home = () => {
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
+      {/* <ResponsiveAppBar /> */}
       <Image src={hone_poster} alt="hero" sx={{ borderRadius: 2 }} />
       <Grid container>
         {productslist &&

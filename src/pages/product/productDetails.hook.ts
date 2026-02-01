@@ -34,9 +34,19 @@ export const useProductDetails = () => {
     warranty: productdata?.warranty,
     // inverter_compatible: productdata?.inverter_compatible ? "true" : "false",
   };
+  const featureList = [
+    { label: "Air Throw", value: features.air_throw_distance },
+    { label: "Tank Capacity", value: features.water_tank },
+    { label: "Motor", value: features.motor },
+    { label: "Fan", value: features.fan },
+    { label: "Speed Control", value: features.speed_control },
+    { label: "Cooling Pad", value: features.cooling_pad },
+    { label: "Oscillating Louvers", value: features.oscillating_louvers },
+    { label: "Warranty", value: features.warranty },
+  ];
 
   return {
-    variables: { productdata, features, isSmScreen, selectImage, setSelectImage },
+    variables: { productdata, features, featureList, isSmScreen, selectImage, setSelectImage },
     methods: {},
   };
 };
