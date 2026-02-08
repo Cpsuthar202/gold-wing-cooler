@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 
 import { ProductCard } from "@components/card/index";
 import { Image } from "@components/image/index";
@@ -17,7 +17,8 @@ const Home = () => {
   }
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
+    // <Box sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
+    <Container maxWidth="lg" sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
       {/* <ResponsiveAppBar /> */}
       <Image src={hone_poster} alt="hero" sx={{ borderRadius: 2 }} />
       <Grid container>

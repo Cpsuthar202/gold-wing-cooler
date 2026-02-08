@@ -5,9 +5,10 @@ import { useProductDetails } from "./productDetails.hook";
 import { WebShare } from "@components/Container/index";
 import { Circular } from "@components/loader/index";
 import cooler_background from "../../../public/images/cooler_background_desktop.jpg";
+import { mColor } from "@color";
 const ProductDetails = () => {
   const {
-    variables: { productdata, features, featureList, isSmScreen, selectImage, setSelectImage },
+    variables: { productdata, featureList, selectImage, setSelectImage },
   } = useProductDetails();
 
   console.log(productdata?.hero_images);
@@ -66,7 +67,7 @@ const ProductDetails = () => {
       <Card sx={{ borderRadius: 3, p: 2, backgroundColor: "white" }}>
         {/* TITLE + SHARE */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Typography variant="subtitle1" fontWeight={600}>
+          <Typography variant="subtitle1" fontWeight={600} color={mColor.primaryMain}>
             {productdata.title}
           </Typography>
 

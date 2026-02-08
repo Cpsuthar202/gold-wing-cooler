@@ -30,6 +30,11 @@ const sidebarMenuList: ITextButtonList[] = [
     link: "#",
     subMenu: modelNameSubMenu, // Assign the dynamically generated subMenu
   },
+  {
+    id: "dealers",
+    label: "Dealers",
+    link: "/dealers",
+  },
   // {
   //   id: "table",
   //   label: "Table",

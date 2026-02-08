@@ -6,6 +6,7 @@ import { Image } from "@components/image";
 import { sidebarMenuList } from "@components/sideBar/utils";
 import { useTopBar } from "./TopBar.hook";
 import pdf from "@/data/GOLD WING COOLER.pdf";
+import { WebShare } from "@components/Container/index";
 
 export default function ResponsiveAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -54,6 +55,9 @@ export default function ResponsiveAppBar() {
           >
             Pinterests
           </Button>
+          <WebShare text="Gold Wing Cooler" url="/">
+            <Button component="a">Share</Button>
+          </WebShare>
         </Box>
 
         {/* Mobile Menu Icon */}
@@ -160,6 +164,9 @@ export default function ResponsiveAppBar() {
         >
           Pinterest
         </MenuItem>
+        <WebShare text="Gold Wing Cooler" url="/">
+          <MenuItem component="a">Share</MenuItem>
+        </WebShare>
       </Menu>
     </AppBar>
   );
