@@ -1,16 +1,24 @@
 [
   {
     "id": 1,
+    "shopName": "Vishwakarma Trading",
+    "ownerName": "Suresh Suthar",
+    "pincode": 306902,
+    "city": "Sumerpur",
+    "state": "Rajasthan",
+    "address": "jakha mataji road"
+  },
+  {
+    "id": 2,
     "shopName": "Vishwakarma Furniture",
     "ownerName": "Bhavesh Suthar",
-    "phone": "9887117112",
     "pincode": 306902,
     "city": "Sumerpur",
     "state": "Rajasthan",
     "address": "Main Market"
   },
   {
-    "id": 2,
+    "id": 3,
     "shopName": "Suthar Malo Ba Furniture",
     "ownerName": "Arjun Suthar",
     "pincode": 306912,

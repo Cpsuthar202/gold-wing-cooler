@@ -76,23 +76,38 @@ const Dealers = () => {
                 }}
               >
                 <CardContent>
-                  <Typography variant="h6" fontWeight={700} color={mColor.primaryMain}>
+                  <Typography variant="subtitle1" fontWeight={700} color={mColor.primaryMain}>
                     {dealer.shopName}
                   </Typography>
 
-                  <Typography variant="body1" mb={1}>
-                    Owner: {dealer.ownerName}
-                  </Typography>
+                  <Stack direction="row" spacing={1}>
+                    <Typography variant="subtitle2">Owner:</Typography>
+                    <Typography variant="subtitle2" fontWeight={600}>
+                      {dealer.ownerName}
+                    </Typography>
+                  </Stack>
 
-                  <Stack direction="row" spacing={1} alignItems="center" mb={1}>
+                  {/* <Stack direction="row" spacing={1} alignItems="center" mb={1}>
                     <LocationOnOutlinedIcon fontSize="small" />
                     <Typography variant="body1">
                       {dealer.address}, {dealer.city}, {dealer.state}
                       {dealer?.pincode ? ` - ${dealer.pincode}` : ""}
                     </Typography>
+                  </Stack> */}
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <LocationOnOutlinedIcon fontSize="small" />
+                    <Box>
+                      <Typography variant="body1" mb={0.5}>
+                        {dealer.address}, {dealer.city},
+                      </Typography>
+                      <Typography variant="body1">
+                        {dealer.state}
+                        {dealer?.pincode ? ` - ${dealer.pincode}` : ""}
+                      </Typography>
+                    </Box>
                   </Stack>
 
-                  {dealer.phone && (
+                  {dealer?.phone && (
                     <Button variant="contained" size="small" startIcon={<PhoneOutlinedIcon />} href={`tel:${dealer.phone}`} sx={{ mt: 1, borderRadius: 2, textTransform: "none" }}>
                       Call Dealer
                     </Button>
